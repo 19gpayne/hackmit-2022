@@ -8,7 +8,7 @@ import { Subheader20 } from '../components/fonts';
 import {GoogleLogin} from 'react-google-login';
 import {GOOGLE_LOGIN_API_KEY} from '../var';
 
-const Signup = () => {
+const Signup = ({tryCreateUser}) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -20,6 +20,7 @@ const Signup = () => {
     const signup = async () => {
         if (email !== "" && password !== "" && name !== "" && password === password2) {
             const createSuccess = await tryCreateUser(name, email, password)
+            console.log(createSuccess)
             if (createSuccess) {
                 history("/home")
             } else {
@@ -72,7 +73,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    
+    tryCreateUser: (name, email, password) => dispatch(tryCreateUser(name, email, password))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

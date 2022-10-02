@@ -4,7 +4,7 @@ import { devUserData } from "../static/dev";
 
 export const tryLoginUser = (email, password) => {
     return async dispatch => {
-        const user = await axiosRequest('', "POST", {email: email, password: password}, devUserData);
+        const user = await axiosRequest('http://localhost:8080/userLogin', "POST", {email: email, password: password}, devUserData);
         await dispatch(setUserData(user));
         return user;
     }
@@ -12,7 +12,7 @@ export const tryLoginUser = (email, password) => {
 
 export const tryCreateUser = (name, email, password) => {
     return async dispatch => {
-        const user = await axiosRequest('', "POST", {name: name, email: email, password: password}, devUserData);
+        const user = await axiosRequest('http://localhost:8080/user', "POST", {name: name, email: email, password: password}, devUserData);
         await dispatch(setUserData(user));
         return user;
     }
