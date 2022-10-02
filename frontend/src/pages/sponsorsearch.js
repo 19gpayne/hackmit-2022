@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Button, TextInput } from '../components/inputs';
 import Navbar from '../components/navbar';
 import { colors } from '../utils/colors';
-import { FilterOutlined } from '@ant-design/icons';
 import { Title36, Text14, Header32, Header24, Subheader20 } from '../components/fonts';
 import Geocode from "react-geocode";
 import { City }  from 'country-state-city';
@@ -74,11 +73,11 @@ const SponsorSearch = () => {
                     <Subheader20>Unsure about where to donate? Search here for recomendations based on which areas are most in need of green spaces</Subheader20>
                 </div>
                 <br />
-                {coords.lat && 
+                {/* {coords.lat && 
                     <Header24>
                         DATA GOES HERE
                     </Header24>
-                }
+                } */}
             </div>
         </div>
     )

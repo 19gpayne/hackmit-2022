@@ -33,7 +33,7 @@ const Login = ({tryLoginUser}) => {
             <hr></hr>
             <br />
             <div style={{width: '50%', margin: '0 auto'}}>
-                <TextInput title="Email" onChange={(e) => setEmail(e.target.value)} placeholder="example@email.com" value={email}/>
+                <TextInput title="Email" type="email" onChange={(e) => setEmail(e.target.value)} placeholder="example@email.com" value={email}/>
                 <br />
                 <TextInput title="Password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" type="password" value={password} />
                 <br />
