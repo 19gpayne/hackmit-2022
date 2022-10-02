@@ -51,7 +51,7 @@ const Listing = ({tryGetListing}) => {
             <div style={{width: 'calc(100% - 4rem)', marginLeft: '4rem'}}>
                 <div style={{justifyContent: 'space-between', display: 'flex', marginRight: '4rem'}}>
                     <Header32>{listing.title}</Header32>
-                    <div style={{width: 'fit-content'}}><SmallButton title="Apply"/></div>
+                    <div style={{width: 'fit-content'}}><SmallButton title={listing.isAvailable ? "Available" : "Unavailable"}/></div>
                 </div>
                 <br />
                 <div style={{display: 'inline-flex', gap: '0.5rem'}}>

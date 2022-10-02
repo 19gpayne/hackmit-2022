@@ -7,6 +7,8 @@ import Signup from './pages/signup';
 import SearchPage from './pages/search';
 import ListingPage from './pages/listing';
 import SponsorPage from './pages/sponsor';
+import PortalPage from './pages/portal';
+import EditListing from './pages/editlisting';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
             <Route path="/" element={<Homepage />} exact={true} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/listing/:id" element={<ListingPage />} />
+            <Route path="/my-yard" element={<><AuthRoute element={PortalPage} /></>} />
+            <Route path="/my-yard/:id" element={<><AuthRoute element={EditListing} /></>} />
             <Route path="/sponsor" element={<SponsorPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />

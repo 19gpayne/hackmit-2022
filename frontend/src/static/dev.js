@@ -184,3 +184,43 @@ export const devOneListingData = [{
     },
     "gardenUnits": 600
 }]
+
+export const devUserListingData = [
+    {
+        "id": 1,
+        "title": "Shared sunny garden",
+        "image": gardenImage,
+        "info": {
+            "hasPets": true,
+            "light": "lowLight",
+            "type": "outdoor"
+        },
+        "description": "Welcome to our sunny backyard! We are so happy to share our garden with the local community.",
+        "location": {
+            city: "Boston",
+            state: "MA",
+            zipcode: "02120",
+            coordinates: {
+                latitude: 30.123,
+                longitude: 117.05123
+            }
+        },
+        "gardenUnits": 600
+    },
+    {
+        "id": 2,
+        "title": "Private backyard garden",
+        "image": gardenImage3,
+        "description": "Spacious garden plot with built in trellis",
+        "location": {
+            city: "Boston",
+            state: "MA",
+            zipcode: "02120",
+            coordinates: {
+                latitude: 30.123,
+                longitude: 117.05123
+            }
+        },
+        "gardenUnits": 990
+    }
+];

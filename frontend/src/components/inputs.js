@@ -17,7 +17,8 @@ const TextArea = styled.div`
         color: ${colors.quarternary};
         outline: none;
         &::placeholder {
-            color: ${colors.quarternary};
+            color: ${colors.secondary};
+            font-weight: normal;
         }
     }
     div {
@@ -32,6 +33,19 @@ const StyledButton = styled.div`
     background-color: ${colors.primary};
     padding: 10px 20px;
     color: white;
+    border-radius: 1rem;
+    font-family: Playfair Display;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+`;
+
+const StyledButton2 = styled.div`
+    background-color: white;
+    padding: 10px 20px;
+    color: ${colors.primary};
+    border: 2px solid ${colors.primary};
     border-radius: 1rem;
     font-family: Playfair Display;
     font-size: 24px;
@@ -93,6 +107,12 @@ export const Button = ({title, onClick, style}) => (
     <StyledButton onClick={onClick} style={style}>
         {title}
     </StyledButton>
+);
+
+export const Button2 = ({title, onClick, style}) => (
+    <StyledButton2 onClick={onClick} style={style}>
+        {title}
+    </StyledButton2>
 );
 
 export const SmallButton = ({title, onClick}) => (
