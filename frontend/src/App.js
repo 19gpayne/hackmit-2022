@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import AuthRoute from './authroute';
 import Homepage from './pages/homepage';
@@ -11,7 +11,14 @@ import PortalPage from './pages/portal';
 import EditListing from './pages/editlisting';
 import Profile from './pages/profile';
 
+import Geocode from "react-geocode";
+import {GEOCODE_API_KEY} from './var';
+
 function App() {
+  useEffect(() => {
+    Geocode.setApiKey(GEOCODE_API_KEY);
+  }, [])
+
   return (
     <BrowserRouter>
           <Routes>

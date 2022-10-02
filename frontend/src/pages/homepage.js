@@ -16,9 +16,7 @@ const Homepage = ({setSearchParameters}) => {
     const [radius, setRadius] = useState(0);
     const [autocompleteVisible, setAutocompleteVisible] = useState(true);
 
-    useEffect(() => {
-        Geocode.setApiKey("AIzaSyC7nVqTwg31YmZzAyAR5euP1U0dP-LC0s8");
-    }, [])
+    
 
     useEffect(() => {
         const loc = location !== "" ? location : "New York City, New York"
