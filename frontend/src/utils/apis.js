@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const axiosRequest = (url, method, json, devRes) => {
-  if (window.location.hostname !== 'localhost') { 
+  if (window.location.hostname === 'localhost') { 
     return devRes;
   }
   else {

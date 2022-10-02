@@ -10,12 +10,11 @@ import { Header32, Subheader20 } from '../components/fonts';
 const Homepage = ({setSearchParameters}) => {
     let history = useNavigate();
     const [location, setLocation] = useState("");
-    const [date, setDate] = useState("");
-    const [size, setSize] = useState("");
+    const [radius, setRadius] = useState("");
 
     useEffect(() => {
-        setSearchParameters({location: location, date: date, size: size})
-    }, [location, date, size]);
+        setSearchParameters({location: location, radius: radius})
+    }, [location, radius]);
 
     return (
         <div>
@@ -26,6 +25,7 @@ const Homepage = ({setSearchParameters}) => {
                 padding: '1.25rem',
                 width: '33%',
                 marginLeft: '4rem',
+                marginTop: '1rem',
                 backgroundColor: 'white'
             }}>
                 <Header32>Share your yard</Header32>
@@ -37,7 +37,7 @@ const Homepage = ({setSearchParameters}) => {
                 borderRadius: '1rem',
                 padding: '1.25rem',
                 width: '33%',
-                margin: '1rem 4rem',
+                margin: '2rem 4rem',
                 backgroundColor: 'white'
             }}>
                 <Header32>Find backyards to plant in</Header32>
@@ -45,9 +45,7 @@ const Homepage = ({setSearchParameters}) => {
                 <br />
                 <div><TextInput placeholder="Anywhere" title="LOCATION" value={location} onChange={(e) => setLocation(e.target.value)}></TextInput></div>
                 <br/> 
-                <div><TextInput type="date" placeholder="Tue, Oct 4" title="START DATE"></TextInput></div>
-                <br/>
-                <div><Dropdown title="FAMILY SIZE" options={['1', '2', '3', '4', '5+']} value={size} onChange={(e) => setSize(e.target.value)}></Dropdown></div>
+                <div><TextInput placeholder="10 miles" title="RADIUS" value={radius} onChange={(e) => setRadius(e.target.value)}></TextInput></div>
                 <br />
                 <div><Button title={<><SearchOutlined /> Search</>} onClick={() => history('/search')}/></div>
             </div>

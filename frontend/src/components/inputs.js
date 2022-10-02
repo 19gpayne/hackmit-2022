@@ -41,7 +41,7 @@ const StyledButton = styled.div`
 
 const StyledButtonSmall = styled.div`
     background-color: ${colors.primary};
-    padding: 7px 18px;
+    padding: 7px 20px;
     color: white;
     border-radius: 3rem;
     font-family: Playfair Display;
@@ -52,7 +52,7 @@ const StyledButtonSmall = styled.div`
 
 const StyledButtonSmall2 = styled.div`
     background-color: white;
-    padding: 7px 18px;
+    padding: 7px 20px;
     color: ${colors.primary};
     border: 2px solid ${colors.primary};
     border-radius: 3rem;

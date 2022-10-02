@@ -23,6 +23,7 @@ const Navbar = () => {
                     marginBottom: '1rem',
                     color: colors.tertiary
                 }}>
+                    <p style={{cursor: 'pointer'}}>Sponsor</p>
                     <p style={{cursor: 'pointer'}}>Share your yard</p>
                     <p onClick={() => history("/signup")} style={{cursor: 'pointer'}}>Signup</p>
                     <p onClick={() => history("/signup")} style={{cursor: 'pointer'}}>Login</p>

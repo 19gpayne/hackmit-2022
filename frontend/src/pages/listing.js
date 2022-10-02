@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { Header24, Header32, Subheader20 } from '../components/fonts';
-import { SmallButton2 } from '../components/inputs';
+import { SmallButton, SmallButton2 } from '../components/inputs';
 import Navbar from '../components/navbar';
 import {tryGetListing} from '../middleware/search';
 import { capitalizeFirstLetter } from '../utils/functions';
@@ -49,16 +49,25 @@ const Listing = ({tryGetListing}) => {
         <div>
             <Navbar></Navbar>
             <div style={{width: 'calc(100% - 4rem)', marginLeft: '4rem'}}>
-                <Header32>{listing.description}</Header32>
+                <div style={{justifyContent: 'space-between', display: 'flex', marginRight: '4rem'}}>
+                    <Header32>{listing.title}</Header32>
+                    <div style={{width: 'fit-content'}}><SmallButton title="Apply"/></div>
+                </div>
                 <br />
-                <div style={{display: 'inline-flex'}}>
+                <div style={{display: 'inline-flex', gap: '0.5rem'}}>
                     {tags.map(tag => (
                         <SmallButton2 key={tag} title={tag}/>
                     ))}
                 </div>
                 <br />
                 <br />
-                <Subheader20>{listing.description}</Subheader20>
+                <div style={{display: 'flex', alignItems: 'center', gap: '2rem'}}>
+                    {listing.images.map((photo) => (
+                        <img key={photo} src={photo} alt={listing.title} style={{borderRadius: '1rem', maxWidth: "30%"}}/>
+                    ))}
+                </div>
+                <br />
+                <Subheader20><p>{listing.description}</p></Subheader20>
             </div>
         </div>
     )
