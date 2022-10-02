@@ -5,16 +5,34 @@ import { Button, Dropdown, TextInput } from '../components/inputs';
 import {SearchOutlined} from '@ant-design/icons';
 import Navbar from '../components/navbar';
 import {setSearchParameters} from '../store/reducer';
-import { Header32, Subheader20 } from '../components/fonts';
+import { Header32, Subheader20, Text14 } from '../components/fonts';
+import Geocode from "react-geocode";
+import { Country, State, City }  from 'country-state-city';
+import { colors } from '../utils/colors';
 
 const Homepage = ({setSearchParameters}) => {
     let history = useNavigate();
     const [location, setLocation] = useState("");
-    const [radius, setRadius] = useState("");
+    const [radius, setRadius] = useState(0);
+    const [autocompleteVisible, setAutocompleteVisible] = useState(true);
 
     useEffect(() => {
-        setSearchParameters({location: location, radius: radius})
+        Geocode.setApiKey("AIzaSyC7nVqTwg31YmZzAyAR5euP1U0dP-LC0s8");
+    }, [])
+
+    useEffect(() => {
+        const loc = location !== "" ? location : "New York City, New York"
+        Geocode.fromAddress(loc).then(
+            (response) => {
+            const { lat, lng } = response.results[0].geometry.location;
+            setSearchParameters({coordinates: {latitude: lat, longitude: lng}, radius: radius})
+            },
+            (error) => {
+            console.error(error);
+            }
+        );
     }, [location, radius]);
+
 
     return (
         <div>
@@ -25,7 +43,6 @@ const Homepage = ({setSearchParameters}) => {
                 padding: '1.25rem',
                 width: '33%',
                 marginLeft: '4rem',
-                marginTop: '1rem',
                 backgroundColor: 'white'
             }}>
                 <Header32>Share your yard</Header32>
@@ -37,15 +54,36 @@ const Homepage = ({setSearchParameters}) => {
                 borderRadius: '1rem',
                 padding: '1.25rem',
                 width: '33%',
-                margin: '2rem 4rem',
+                margin: '1rem 4rem',
                 backgroundColor: 'white'
             }}>
                 <Header32>Find backyards to plant in</Header32>
                 <Subheader20>Discover entire gardens or backyard spaces, perfect for sharing</Subheader20>
                 <br />
-                <div><TextInput placeholder="Anywhere" title="LOCATION" value={location} onChange={(e) => setLocation(e.target.value)}></TextInput></div>
+                <div><TextInput placeholder="Anywhere" title="LOCATION" value={location} onChange={(e) => {setLocation(e.target.value); setAutocompleteVisible(true)}}></TextInput></div>
+                {(location && autocompleteVisible) && 
+                    <div>
+                        {City.getCitiesOfCountry('US').filter((city) => (
+                            city.stateCode.toLowerCase().includes(location.toLowerCase()) || 
+                            city.name.toLowerCase().includes(location.split(", ")[0].toLowerCase()) && 
+                            (location.includes(", ") ? city.stateCode.toLowerCase().includes(location.split(", ")[1].toLowerCase()) : true)
+                        )
+                        ).slice(0, 2).map((city => (
+                            <Text14 style={{
+                                border: '1px solid' + colors.secondary, 
+                                padding: '0.5rem 1rem', 
+                                borderRadius: '1rem', 
+                                cursor: 'pointer',
+                            }}
+                                onClick={() => {setLocation(city.name + ", " + city.stateCode); setAutocompleteVisible(false)}}
+                            >
+                                {city.name}, {city.stateCode}
+                            </Text14>
+                        )))}
+                    </div>
+                }
                 <br/> 
-                <div><TextInput placeholder="10 miles" title="RADIUS" value={radius} onChange={(e) => setRadius(e.target.value)}></TextInput></div>
+                <div><TextInput type="number" placeholder="N/A" title="RADIUS (IN MILES)" value={radius} onChange={(e) => setRadius(e.target.value)}></TextInput></div>
                 <br />
                 <div><Button title={<><SearchOutlined /> Search</>} onClick={() => history('/search')}/></div>
             </div>

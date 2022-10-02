@@ -8,27 +8,62 @@ import { colors } from '../utils/colors';
 import { FilterOutlined } from '@ant-design/icons';
 import { Header24, Subheader20 } from '../components/fonts';
 import { useNavigate } from 'react-router-dom';
+import Geocode from "react-geocode";
+import cities from 'cities.json';
 
 const SearchPage = ({searchData, tryGetRelevantListings}) => {
     const [listings, setListings] = useState([]);
+    const [searchLocation, setSearchLocation] = useState("");
     const [filterView, setFilterView] = useState(false);
     let history = useNavigate();
 
     useEffect(() => {
         async function get() {
-            const l = await tryGetRelevantListings(0, 0, 0)
-            console.log(l)
+            const l = await tryGetRelevantListings(
+                searchData.get("coordinates").get("latitude"), 
+                searchData.get("coordinates").get("longitude"), 
+                searchData.get("radius")
+            )
             setListings(l)
         }
         get();
     }, [searchData, tryGetRelevantListings]);
+
+    useEffect(() => {
+        async function get() {
+            Geocode.fromLatLng(
+                searchData.get("coordinates").get("latitude"), 
+                searchData.get("coordinates").get("longitude")).then(
+                (response) => {
+                  let city, state
+                  for (let i = 0; i < response.results[0].address_components.length; i++) {
+                    for (let j = 0; j < response.results[0].address_components[i].types.length; j++) {
+                      switch (response.results[0].address_components[i].types[j]) {
+                        case "locality":
+                          city = response.results[0].address_components[i].long_name;
+                          break;
+                        case "administrative_area_level_1":
+                          state = response.results[0].address_components[i].long_name;
+                          break;
+                      }
+                    }
+                  }
+                  setSearchLocation(city + ", " + state)
+                },
+                (error) => {
+                  console.error(error);
+                }
+              );
+        }
+        get();
+    }, []);
 
 
     return (
         <div>
             <Navbar></Navbar>
             <div style={{display: 'inline-flex', gap: '1rem', marginLeft: '4rem', alignItems: 'center'}}>
-                <div><TextInput placeholder="Anywhere" title="LOCATION"></TextInput></div>
+                <div><TextInput placeholder="Anywhere" title="LOCATION" value={searchLocation} onChange={() => history('/')}></TextInput></div>
 
                 <div style={{border: '1px solid' + colors.secondary, borderRadius: '1rem', padding: '1rem', fontFamily: 'Playfair Display', fontWeight: 'bold', cursor: 'pointer', color: colors.tertiary}}>
                     <div onClick={() => setFilterView(true)}><FilterOutlined /> FILTERS</div>

@@ -35,6 +35,7 @@ const StyledButton = styled.div`
     border-radius: 1rem;
     font-family: Playfair Display;
     font-size: 24px;
+    font-weight: bold;
     text-align: center;
     cursor: pointer;
 `;
@@ -46,6 +47,7 @@ const StyledButtonSmall = styled.div`
     border-radius: 3rem;
     font-family: Playfair Display;
     font-size: 16px;
+    font-weight: bold;
     text-align: center;
     cursor: pointer;
 `;
@@ -58,6 +60,7 @@ const StyledButtonSmall2 = styled.div`
     border-radius: 3rem;
     font-family: Playfair Display;
     font-size: 16px;
+    font-weight: bold;
     text-align: center;
     cursor: pointer;
 `;
@@ -86,8 +89,8 @@ export const Dropdown = ({title, options}) => (
     </TextArea>
 );
 
-export const Button = ({title, onClick}) => (
-    <StyledButton onClick={onClick}>
+export const Button = ({title, onClick, style}) => (
+    <StyledButton onClick={onClick} style={style}>
         {title}
     </StyledButton>
 );

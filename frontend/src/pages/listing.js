@@ -4,6 +4,7 @@ import { Header24, Header32, Subheader20 } from '../components/fonts';
 import { SmallButton, SmallButton2 } from '../components/inputs';
 import Navbar from '../components/navbar';
 import {tryGetListing} from '../middleware/search';
+import { colors } from '../utils/colors';
 import { capitalizeFirstLetter } from '../utils/functions';
 
 const Listing = ({tryGetListing}) => {
@@ -13,7 +14,7 @@ const Listing = ({tryGetListing}) => {
     const parseTags = () => {
         let tagsList = []
         if (listing.info.hasPets) {
-            tagsList.push("Pet Friendly")
+            tagsList.push("Pet friendly")
         }
         if (listing.info.type) {
             tagsList.push(capitalizeFirstLetter(listing.info.type))

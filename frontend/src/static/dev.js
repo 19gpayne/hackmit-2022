@@ -36,7 +36,7 @@ export const devListingData = [
     {
         "id": 2,
         "title": "Private backyard garden",
-        "images": [gardenImage2],
+        "images": [gardenImage3],
         "description": "Spacious garden plot with built in trellis",
         "location": {
             city: "Boston",
@@ -52,7 +52,7 @@ export const devListingData = [
     {
         "id": 3,
         "title": "Raised garden",
-        "images": [gardenImage3],
+        "images": [gardenImage2],
         "description": "Small raised bed garden",
         "location": {
             city: "Boston",
@@ -67,7 +67,7 @@ export const devListingData = [
     },
     {
         "id": 4,
-        "title": "Blah",
+        "title": "Raised garden",
         "images": [gardenImage],
         "description": "Sunlit shared yard with installed planters",
         "location": {
@@ -83,7 +83,7 @@ export const devListingData = [
     },
     {
         "id": 5,
-        "title": "Blah",
+        "title": "Raised garden",
         "images": [gardenImage3],
         "description": "Sunlit shared yard with installed planters",
         "location": {
@@ -99,7 +99,7 @@ export const devListingData = [
     },
     {
         "id": 6,
-        "title": "Blah",
+        "title": "Raised garden",
         "images": [gardenImage2],
         "description": "Sunlit shared yard with installed planters",
         "location": {
@@ -115,7 +115,7 @@ export const devListingData = [
     },
     {
         "id": 7,
-        "title": "Blah",
+        "title": "Raised garden",
         "images": [gardenImage3],
         "description": "Sunlit shared yard with installed planters",
         "location": {
@@ -131,7 +131,7 @@ export const devListingData = [
     },
     {
         "id": 8,
-        "title": "Blah",
+        "title": "Raised garden",
         "images": [gardenImage],
         "description": "Sunlit shared yard with installed planters",
         "location": {
