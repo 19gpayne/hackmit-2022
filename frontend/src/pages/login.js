@@ -2,6 +2,11 @@ import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {tryLoginUser} from '../middleware/auth';
+import Navbar from '../components/navbar';
+import {Button, Button2, TextInput} from '../components/inputs';
+import { Subheader20 } from '../components/fonts';
+import {GoogleLogin} from 'react-google-login';
+import {GOOGLE_LOGIN_API_KEY} from '../var';
 
 const Login = ({tryLoginUser}) => {
     const [email, setEmail] = useState("");
@@ -13,7 +18,7 @@ const Login = ({tryLoginUser}) => {
         if (email !== "" && password !== "") {
             const loginSuccess = await tryLoginUser(email, password)
             if (loginSuccess) {
-                history("/")
+                history("/my-yard")
             } else {
                 setError("Invalid email or password")
             }
@@ -24,11 +29,30 @@ const Login = ({tryLoginUser}) => {
 
     return (
         <div>
-            <h1>GARDENSHARE</h1>
-            <input onChange={(e) => setEmail(e.target.value)} placeholder="example@email.com" />
-            <input onChange={(e) => setPassword(e.target.value)} placeholder="password" type="password" />
-            <div>{error}</div>
-            <button onClick={login}>Login</button>
+            <Navbar></Navbar>
+            <hr></hr>
+            <br />
+            <div style={{width: '50%', margin: '0 auto'}}>
+                <TextInput title="Email" onChange={(e) => setEmail(e.target.value)} placeholder="example@email.com" value={email}/>
+                <br />
+                <TextInput title="Password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" type="password" value={password} />
+                <br />
+                <div>{error}</div>
+                <br />
+                <Button onClick={login} title="Continue" />
+                <br />
+                <div style={{textAlign: 'center'}}><Subheader20>or</Subheader20></div>
+                <br />
+                <GoogleLogin
+                    clientId={GOOGLE_LOGIN_API_KEY}
+                    render={renderProps => (
+                        <Button2 onClick={renderProps.onClick} title="Continue with Google" />
+                    )}
+                    onSuccess={() => {}}
+                    onFailure={() => {}}
+                    cookiePolicy={'single_host_origin'}
+                />
+            </div>
         </div>
     )
 }

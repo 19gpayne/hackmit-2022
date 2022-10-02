@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import {Button} from '../components/inputs';
 import Navbar from '../components/navbar';
 import { Header24, Title36, Subheader20 } from '../components/fonts';
+import { useNavigate } from 'react-router-dom';
 
-const SponsorPage = ({}) => {
+const SponsorPage = () => {
+    let history = useNavigate();
     return (
         <div>
             <Navbar></Navbar>
-            <div style={{marginLeft: '4rem'}}>
+            <div style={{marginLeft: '4rem', width: 'calc(100% - 8rem)'}}>
                 <Title36>Support Your Community</Title36>
                 <br />
                 <br />
@@ -24,7 +26,7 @@ const SponsorPage = ({}) => {
                 <Subheader20>Choose a neighborhood and a donation amount. We will verify the garden expense receipts within that area and handle the distribution of resources. That easy!</Subheader20>
                 <br />
                 <br />
-                <Button title="Donate" style={{width: "25%"}}/>
+                <Button title="Donate" style={{width: "25%"}} onClick={() => history('/sponsor-search')}/>
             </div>
         </div>
     )

@@ -1,32 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
-import { Header24, Header32, Subheader20 } from '../components/fonts';
+import { Header32, Subheader20 } from '../components/fonts';
 import { SmallButton, SmallButton2 } from '../components/inputs';
 import Navbar from '../components/navbar';
 import {tryGetListing} from '../middleware/search';
-import { colors } from '../utils/colors';
 import { capitalizeFirstLetter } from '../utils/functions';
 
 const Listing = ({tryGetListing}) => {
     const [listing, setListing] = useState(null);
     const [tags, setTags] = useState([]);
-
-    const parseTags = () => {
-        let tagsList = []
-        if (listing.info.hasPets) {
-            tagsList.push("Pet friendly")
-        }
-        if (listing.info.type) {
-            tagsList.push(capitalizeFirstLetter(listing.info.type))
-        }
-        if (listing.info.light) {
-            tagsList.push(capitalizeFirstLetter(listing.info.light.split("Light")[0] + " light"))
-        }
-        if (listing.info.ownerWaters) {
-            tagsList.push("Watering provided")
-        }
-        return tagsList
-    }
 
     useEffect(() => {
         const listingId = window.location.pathname.split("/")[2]
@@ -35,9 +17,25 @@ const Listing = ({tryGetListing}) => {
             await setListing(l)
         }
         get();
-    }, []);
+    }, [tryGetListing]);
 
     useEffect(() => {
+        const parseTags = () => {
+            let tagsList = []
+            if (listing.info.hasPets) {
+                tagsList.push("Pet friendly")
+            }
+            if (listing.info.type) {
+                tagsList.push(capitalizeFirstLetter(listing.info.type))
+            }
+            if (listing.info.light) {
+                tagsList.push(capitalizeFirstLetter(listing.info.light.split("Light")[0] + " light"))
+            }
+            if (listing.info.ownerWaters) {
+                tagsList.push("Watering provided")
+            }
+            return tagsList
+        }
         if (listing) {
             setTags(parseTags())
         }
@@ -68,7 +66,7 @@ const Listing = ({tryGetListing}) => {
                     ))}
                 </div>
                 <br />
-                <Subheader20><p>{listing.description}</p></Subheader20>
+                <Subheader20>{listing.description}</Subheader20>
             </div>
         </div>
     )

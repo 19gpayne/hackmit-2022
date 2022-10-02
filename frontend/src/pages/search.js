@@ -6,16 +6,27 @@ import {tryGetRelevantListings} from '../middleware/search';
 import Listing from '../components/listing';
 import { colors } from '../utils/colors';
 import { FilterOutlined } from '@ant-design/icons';
-import { Header24, Subheader20 } from '../components/fonts';
+import { Header24, Subheader20, Text14 } from '../components/fonts';
 import { useNavigate } from 'react-router-dom';
 import Geocode from "react-geocode";
-import cities from 'cities.json';
+import { City }  from 'country-state-city';
+import {setSearchParameters} from '../store/reducer';
 
 const SearchPage = ({searchData, tryGetRelevantListings}) => {
     const [listings, setListings] = useState([]);
     const [searchLocation, setSearchLocation] = useState("");
     const [filterView, setFilterView] = useState(false);
+    const [autocompleteVisible, setAutocompleteVisible] = useState(false);
+    const [coords, setCoords] = useState({lat: 0, lng: 0})
     let history = useNavigate();
+
+    useEffect(() => {
+        async function get() {
+            const l = await tryGetRelevantListings(coords.lat, coords.lng, 25)
+            setListings(l)
+        }
+        get();
+    }, [coords, tryGetRelevantListings]);
 
     useEffect(() => {
         async function get() {
@@ -45,6 +56,8 @@ const SearchPage = ({searchData, tryGetRelevantListings}) => {
                         case "administrative_area_level_1":
                           state = response.results[0].address_components[i].long_name;
                           break;
+                        default:
+                            break;
                       }
                     }
                   }
@@ -56,18 +69,53 @@ const SearchPage = ({searchData, tryGetRelevantListings}) => {
               );
         }
         get();
-    }, []);
+    }, [searchData]);
 
+    const updateSearch = async () => {
+        const loc = searchLocation !== "" ? searchLocation : "New York City, New York"
+        Geocode.fromAddress(loc).then(
+            (response) => {
+                const { lat, lng } = response.results[0].geometry.location;
+                setCoords({lat: lat, lng: lng})
+            },
+            (error) => {
+                console.error(error);
+            }
+        ) 
+    }
 
     return (
         <div>
             <Navbar></Navbar>
             <div style={{display: 'inline-flex', gap: '1rem', marginLeft: '4rem', alignItems: 'center'}}>
-                <div><TextInput placeholder="Anywhere" title="LOCATION" value={searchLocation} onChange={() => history('/')}></TextInput></div>
-
+                <div>
+                    <div><TextInput placeholder="Anywhere" title="LOCATION" value={searchLocation} onChange={(e) => {setSearchLocation(e.target.value); setAutocompleteVisible(true)}}></TextInput></div>
+                    {(searchLocation && autocompleteVisible) && 
+                        <div>
+                            {City.getCitiesOfCountry('US').filter((city) => (
+                                city.stateCode.toLowerCase().includes(searchLocation.toLowerCase()) || 
+                                (city.name.toLowerCase().includes(searchLocation.split(", ")[0].toLowerCase()) && 
+                                (searchLocation.includes(", ") ? city.stateCode.toLowerCase().includes(searchLocation.split(", ")[1].toLowerCase()) : true))
+                            )
+                            ).slice(0, 2).map((city => (
+                                <Text14 style={{
+                                    border: '1px solid' + colors.secondary, 
+                                    padding: '0.5rem 1rem', 
+                                    borderRadius: '1rem', 
+                                    cursor: 'pointer',
+                                }}
+                                    onClick={() => {setSearchLocation(city.name + ", " + city.stateCode); setAutocompleteVisible(false)}}
+                                >
+                                    {city.name}, {city.stateCode}
+                                </Text14>
+                            )))}
+                        </div>
+                    }
+                </div>
                 <div style={{border: '1px solid' + colors.secondary, borderRadius: '1rem', padding: '1rem', fontFamily: 'Playfair Display', fontWeight: 'bold', cursor: 'pointer', color: colors.tertiary}}>
                     <div onClick={() => setFilterView(true)}><FilterOutlined /> FILTERS</div>
                 </div>
+                <Button title="Search" onClick={updateSearch}/>
             </div>
             <br />
             <br />
@@ -113,7 +161,7 @@ const SearchPage = ({searchData, tryGetRelevantListings}) => {
                             <br />
                             Type of Space
                             <br />
-                            <div>
+                            <div style={{gap: '1rem', display: 'flex'}}>
                                 <Checkbox title={"Private plot/planter(s)"}/>
                                 <Checkbox title={"Shared plot/planter(s)"}/>
                                 <Checkbox title={"Entire yard/garden"}/>
@@ -121,7 +169,7 @@ const SearchPage = ({searchData, tryGetRelevantListings}) => {
                             <br />
                             Amenities
                             <br />
-                            <div>
+                            <div style={{gap: '1rem', display: 'flex'}}>
                                 <Checkbox title={"Sprinkler system"}/>
                                 <Checkbox title={"Hose"}/>
                                 <Checkbox title={"Wheelbarrow"}/>
@@ -135,7 +183,7 @@ const SearchPage = ({searchData, tryGetRelevantListings}) => {
                             <div style={{display: 'inline-flex'}}>
                                 <SmallButton2 title={"Cancel"} onClick={() => setFilterView(false)}/>
                                 &nbsp;&nbsp;
-                                <SmallButton title={"Apply"}/>
+                                <SmallButton title={"Apply"} onClick={() => setFilterView(false)}/>
                             </div>
                             
                         </div>
@@ -150,7 +198,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    tryGetRelevantListings: (longitude, latitude, milesRadius) => dispatch(tryGetRelevantListings(longitude, latitude, milesRadius))
+    tryGetRelevantListings: (longitude, latitude, milesRadius) => dispatch(tryGetRelevantListings(longitude, latitude, milesRadius)),
+    setSearchParameters: (data) => dispatch(setSearchParameters(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Button, Dropdown, TextInput } from '../components/inputs';
+import { Button, TextInput } from '../components/inputs';
 import {SearchOutlined} from '@ant-design/icons';
 import Navbar from '../components/navbar';
 import {setSearchParameters} from '../store/reducer';
 import { Header32, Subheader20, Text14 } from '../components/fonts';
 import Geocode from "react-geocode";
-import { Country, State, City }  from 'country-state-city';
+import { City }  from 'country-state-city';
 import { colors } from '../utils/colors';
 
 const Homepage = ({setSearchParameters}) => {
@@ -16,22 +16,20 @@ const Homepage = ({setSearchParameters}) => {
     const [radius, setRadius] = useState(0);
     const [autocompleteVisible, setAutocompleteVisible] = useState(true);
 
-    useEffect(() => {
-        Geocode.setApiKey("AIzaSyC7nVqTwg31YmZzAyAR5euP1U0dP-LC0s8");
-    }, [])
+    
 
     useEffect(() => {
         const loc = location !== "" ? location : "New York City, New York"
         Geocode.fromAddress(loc).then(
             (response) => {
-            const { lat, lng } = response.results[0].geometry.location;
-            setSearchParameters({coordinates: {latitude: lat, longitude: lng}, radius: radius})
+                const { lat, lng } = response.results[0].geometry.location;
+                setSearchParameters({coordinates: {latitude: lat, longitude: lng}, radius: radius})
             },
             (error) => {
-            console.error(error);
+                console.error(error);
             }
         );
-    }, [location, radius]);
+    }, [location, radius, setSearchParameters]);
 
 
     return (
@@ -65,8 +63,8 @@ const Homepage = ({setSearchParameters}) => {
                     <div>
                         {City.getCitiesOfCountry('US').filter((city) => (
                             city.stateCode.toLowerCase().includes(location.toLowerCase()) || 
-                            city.name.toLowerCase().includes(location.split(", ")[0].toLowerCase()) && 
-                            (location.includes(", ") ? city.stateCode.toLowerCase().includes(location.split(", ")[1].toLowerCase()) : true)
+                            (city.name.toLowerCase().includes(location.split(", ")[0].toLowerCase()) && 
+                            (location.includes(", ") ? city.stateCode.toLowerCase().includes(location.split(", ")[1].toLowerCase()) : true))
                         )
                         ).slice(0, 2).map((city => (
                             <Text14 style={{

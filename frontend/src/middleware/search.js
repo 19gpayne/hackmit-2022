@@ -1,5 +1,5 @@
 import {axiosRequest} from "../utils/apis";
-import { devListingData, devOneListingData } from "../static/dev";
+import { devListingData, devOneListingData, devUserListingData } from "../static/dev";
 
 export const tryGetRelevantListings = (latitude, longitude, milesRadius) => {
     return async dispatch => {
@@ -14,3 +14,9 @@ export const tryGetListing = (id) => {
         return listing
     }
 };
+
+export const tryGetUserListings = (userId) => {
+    return async dispatch => {
+        return await axiosRequest('http://localhost:8080/garden', "GET", {id: userId}, devUserListingData);
+    }
+}

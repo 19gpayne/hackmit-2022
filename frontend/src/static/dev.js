@@ -2,7 +2,7 @@ export const devUserData =
 {
     'id': 101,
     'name': 'Gwendolyn Payne',
-    'email': 'example@email.com'
+    'email': 'example@email.com',
 };
 
 export const devUserDataBad = false;
@@ -15,7 +15,7 @@ export const devListingData = [
     {
         "id": 1,
         "title": "Shared sunny garden",
-        "images": [gardenImage],
+        "image": gardenImage,
         "info": {
             "hasPets": true,
             "light": "lowLight",
@@ -36,7 +36,7 @@ export const devListingData = [
     {
         "id": 2,
         "title": "Private backyard garden",
-        "images": [gardenImage3],
+        "image": gardenImage3,
         "description": "Spacious garden plot with built in trellis",
         "location": {
             city: "Boston",
@@ -52,7 +52,7 @@ export const devListingData = [
     {
         "id": 3,
         "title": "Raised garden",
-        "images": [gardenImage2],
+        "image": gardenImage2,
         "description": "Small raised bed garden",
         "location": {
             city: "Boston",
@@ -68,7 +68,7 @@ export const devListingData = [
     {
         "id": 4,
         "title": "Raised garden",
-        "images": [gardenImage],
+        "image": gardenImage,
         "description": "Sunlit shared yard with installed planters",
         "location": {
             city: "Boston",
@@ -84,7 +84,7 @@ export const devListingData = [
     {
         "id": 5,
         "title": "Raised garden",
-        "images": [gardenImage3],
+        "image": gardenImage3,
         "description": "Sunlit shared yard with installed planters",
         "location": {
             city: "Boston",
@@ -100,7 +100,7 @@ export const devListingData = [
     {
         "id": 6,
         "title": "Raised garden",
-        "images": [gardenImage2],
+        "image": gardenImage2,
         "description": "Sunlit shared yard with installed planters",
         "location": {
             city: "Boston",
@@ -116,7 +116,7 @@ export const devListingData = [
     {
         "id": 7,
         "title": "Raised garden",
-        "images": [gardenImage3],
+        "image": gardenImage3,
         "description": "Sunlit shared yard with installed planters",
         "location": {
             city: "Boston",
@@ -132,7 +132,7 @@ export const devListingData = [
     {
         "id": 8,
         "title": "Raised garden",
-        "images": [gardenImage],
+        "image": gardenImage,
         "description": "Sunlit shared yard with installed planters",
         "location": {
             city: "Boston",
@@ -148,7 +148,7 @@ export const devListingData = [
     {
         "id": 9,
         "title": "Entire backyard",
-        "images": [gardenImage2],
+        "image": gardenImage2,
         "description": "Sunlit shared yard with installed planters",
         "location": {
             city: "Boston",
@@ -182,5 +182,50 @@ export const devOneListingData = [{
             longitude: 117.05123
         }
     },
-    "gardenUnits": 600
+    "gardenUnits": 600,
+    "applicants": [
+        {"id": 1, "name": "Gwendolyn P."},
+        {"id": 2, "name": "Izzy C."},
+        {"id": 3, "name": "Sadie L."}
+    ]
 }]
+
+export const devUserListingData = [
+    {
+        "id": 1,
+        "title": "Shared sunny garden",
+        "image": gardenImage,
+        "info": {
+            "hasPets": true,
+            "light": "lowLight",
+            "type": "outdoor"
+        },
+        "description": "Welcome to our sunny backyard! We are so happy to share our garden with the local community.",
+        "location": {
+            city: "Boston",
+            state: "MA",
+            zipcode: "02120",
+            coordinates: {
+                latitude: 30.123,
+                longitude: 117.05123
+            }
+        },
+        "gardenUnits": 600
+    },
+    {
+        "id": 2,
+        "title": "Private backyard garden",
+        "image": gardenImage3,
+        "description": "Spacious garden plot with built in trellis",
+        "location": {
+            city: "Boston",
+            state: "MA",
+            zipcode: "02120",
+            coordinates: {
+                latitude: 30.123,
+                longitude: 117.05123
+            }
+        },
+        "gardenUnits": 990
+    }
+];
