@@ -2,7 +2,7 @@ export const devUserData =
 {
     'id': 101,
     'name': 'Gwendolyn Payne',
-    'email': 'example@email.com'
+    'email': 'example@email.com',
 };
 
 export const devUserDataBad = false;
@@ -182,7 +182,12 @@ export const devOneListingData = [{
             longitude: 117.05123
         }
     },
-    "gardenUnits": 600
+    "gardenUnits": 600,
+    "applicants": [
+        {"id": 1, "name": "Gwendolyn P."},
+        {"id": 2, "name": "Izzy C."},
+        {"id": 3, "name": "Sadie L."}
+    ]
 }]
 
 export const devUserListingData = [
