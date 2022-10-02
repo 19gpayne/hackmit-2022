@@ -13,10 +13,10 @@ const Listing = ({listing, viewListing}) => {
         }}
             onClick={viewListing}
         >
-            <img src={listing.images[0]} alt="Listing" style={{width: '100%'}}/>
+            { <img src={listing.image} alt="Listing" style={{width: '100%'}}/> }
             <Header32>{listing.title}</Header32>
             <Subheader20>{listing.description}</Subheader20>
-            <Header24>{listing.gardenSize + " sq. ft"}</Header24>
+            <Header24>{listing.gardenUnits + " sq. ft"}</Header24>
         </div>
     )
 }

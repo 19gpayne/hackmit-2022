@@ -31,7 +31,7 @@ export const devListingData = [
                 longitude: 117.05123
             }
         },
-        "gardenSize": 600
+        "gardenUnits": 600
     },
     {
         "id": 2,
@@ -47,7 +47,7 @@ export const devListingData = [
                 longitude: 117.05123
             }
         },
-        "gardenSize": 990
+        "gardenUnits": 990
     },
     {
         "id": 3,
@@ -63,7 +63,7 @@ export const devListingData = [
                 longitude: 117.05123
             }
         },
-        "gardenSize": 100
+        "gardenUnits": 100
     },
     {
         "id": 4,
@@ -79,7 +79,7 @@ export const devListingData = [
                 longitude: 117.05123
             }
         },
-        "gardenSize": 600
+        "gardenUnits": 600
     },
     {
         "id": 5,
@@ -95,7 +95,7 @@ export const devListingData = [
                 longitude: 117.05123
             }
         },
-        "gardenSize": 10
+        "gardenUnits": 10
     },
     {
         "id": 6,
@@ -111,7 +111,7 @@ export const devListingData = [
                 longitude: 117.05123
             }
         },
-        "gardenSize": 370
+        "gardenUnits": 370
     },
     {
         "id": 7,
@@ -127,7 +127,7 @@ export const devListingData = [
                 longitude: 117.05123
             }
         },
-        "gardenSize": 1000
+        "gardenUnits": 1000
     },
     {
         "id": 8,
@@ -143,7 +143,7 @@ export const devListingData = [
                 longitude: 117.05123
             }
         },
-        "gardenSize": 278
+        "gardenUnits": 278
     },
     {
         "id": 9,
@@ -159,7 +159,7 @@ export const devListingData = [
                 longitude: 117.05123
             }
         },
-        "gardenSize": 16.5
+        "gardenUnits": 16.5
     },
 ];
 
@@ -182,5 +182,5 @@ export const devOneListingData = [{
             longitude: 117.05123
         }
     },
-    "gardenSize": 600
+    "gardenUnits": 600
 }]
