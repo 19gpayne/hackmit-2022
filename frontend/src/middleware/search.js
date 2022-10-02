@@ -10,7 +10,7 @@ export const tryGetRelevantListings = (latitude, longitude, milesRadius) => {
 export const tryGetListing = (id) => {
     return async dispatch => {
         const listing = await axiosRequest('http://localhost:8080/garden', "GET", {id: id}, devOneListingData);
-        console.log(listing[0])
-        return listing[0]
+        console.log(listing)
+        return listing
     }
 };
