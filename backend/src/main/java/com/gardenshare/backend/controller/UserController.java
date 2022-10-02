@@ -28,14 +28,40 @@ public class UserController {
         return ResponseEntity.of(user);
     }
 
-    @GetMapping("/user")
-    ResponseEntity<User> getUser(@RequestParam(value="email") String email, @RequestParam(value="password") String password) {
-        Optional<User> user = repository.findUserBy(email, password);
+    @PostMapping("/userLogin")
+    ResponseEntity<User> getUser(@RequestBody UserLogin userLogin) {
+        Optional<User> user = repository.findUserBy(userLogin.email, userLogin.password);
         if (user.isEmpty()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
         return ResponseEntity.of(user);
+    }
+
+    private static class UserLogin {
+        private String email;
+        private String password;
+
+        public UserLogin(String email, String password) {
+            this.email = email;
+            this.password = password;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
     }
 
     @PostMapping("/user")

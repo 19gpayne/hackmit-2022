@@ -14,10 +14,10 @@ public enum GardenType {
 
     public static GardenType from(String string) {
         switch (string.toLowerCase().trim()) {
-            case "indoor" -> {
+            case "indoor", "indoors" -> {
                 return GardenType.INDOOR;
             }
-            case "outdoorplot", "outdoor_plot" -> {
+            case "outdoorplot", "outdoor_plot", "outdoor", "outdoors" -> {
                 return GardenType.OUTDOOR_PLOT;
             }
             case "backyard" -> {
