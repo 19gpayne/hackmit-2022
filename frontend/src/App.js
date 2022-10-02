@@ -10,6 +10,7 @@ import SponsorPage from './pages/sponsor';
 import PortalPage from './pages/portal';
 import EditListing from './pages/editlisting';
 import Profile from './pages/profile';
+import SponsorSearch from './pages/sponsorsearch';
 
 import Geocode from "react-geocode";
 import {GEOCODE_API_KEY} from './var';
@@ -29,6 +30,7 @@ function App() {
             <Route path="/settings" element={<><AuthRoute element={Profile} /></>} />
             <Route path="/my-yard/:id" element={<><AuthRoute element={EditListing} /></>} />
             <Route path="/sponsor" element={<SponsorPage />} />
+            <Route path="/sponsor-search" element={<SponsorSearch />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="*" element={<Navigate to="/" replace />}/>
