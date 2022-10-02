@@ -5,6 +5,8 @@ import { tryCreateUser } from '../middleware/auth';
 import Navbar from '../components/navbar';
 import {Button, Button2, TextInput} from '../components/inputs';
 import { Subheader20 } from '../components/fonts';
+import {GoogleLogin} from 'react-google-login';
+import {GOOGLE_LOGIN_API_KEY} from '../var';
 
 const Signup = () => {
     const [name, setName] = useState("");
@@ -50,7 +52,15 @@ const Signup = () => {
                 <br />
                 <div style={{textAlign: 'center'}}><Subheader20>or</Subheader20></div>
                 <br />
-                <Button2 title="Continue with Google" />
+                <GoogleLogin
+                    clientId={GOOGLE_LOGIN_API_KEY}
+                    render={renderProps => (
+                        <Button2 onClick={renderProps.onClick} title="Continue with Google" />
+                    )}
+                    onSuccess={() => {}}
+                    onFailure={() => {}}
+                    cookiePolicy={'single_host_origin'}
+                />
             </div>
         </div>
 
