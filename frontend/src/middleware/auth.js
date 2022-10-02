@@ -12,7 +12,7 @@ export const tryLoginUser = (email, password) => {
 
 export const tryCreateUser = (name, email, password) => {
     return async dispatch => {
-        const user = await axiosRequest('', "POST", {name: name, email: email, password: password}, {});
+        const user = await axiosRequest('', "POST", {name: name, email: email, password: password}, devUserData);
         await dispatch(setUserData(user));
         return user;
     }

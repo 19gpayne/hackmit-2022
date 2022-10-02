@@ -21,7 +21,7 @@ const Signup = () => {
         if (email !== "" && password !== "" && name !== "" && password === password2) {
             const createSuccess = await tryCreateUser(name, email, password)
             if (createSuccess) {
-                history("/")
+                history("/home")
             } else {
                 setError("Something went wrong. Try again")
             }
