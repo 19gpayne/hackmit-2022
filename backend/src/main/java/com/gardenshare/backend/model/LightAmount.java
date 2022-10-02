@@ -14,13 +14,13 @@ public enum LightAmount {
 
     public static LightAmount from(String string) {
         switch (string.toLowerCase().trim()) {
-            case "directsunlight", "direct_sunlight" -> {
+            case "directsunlight", "direct_sunlight", "direct", "direct sunlight", "direct light"-> {
                 return LightAmount.DIRECT_SUNLIGHT;
             }
-            case "indirectsunlight", "indirect_sunlight" -> {
+            case "indirectsunlight", "indirect_sunlight", "indirect", "indirect sunlight", "indirect light" -> {
                 return LightAmount.INDIRECT_SUNLIGHT;
             }
-            case "lowlight", "low_light" -> {
+            case "lowlight", "low_light", "low light" -> {
                 return LightAmount.LOW_LIGHT;
             }
             default -> {
