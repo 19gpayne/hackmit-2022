@@ -163,7 +163,7 @@ export const devListingData = [
     },
 ];
 
-export const devOneListingData = [{
+export const devOneListingData = {
     "id": 1,
     "title": "Shared sunny garden",
     "images": [gardenImage, gardenImage2],
@@ -188,7 +188,7 @@ export const devOneListingData = [{
         {"id": 2, "name": "Izzy C."},
         {"id": 3, "name": "Sadie L."}
     ]
-}]
+}
 
 export const devUserListingData = [
     {
