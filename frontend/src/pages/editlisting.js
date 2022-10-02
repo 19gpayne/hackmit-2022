@@ -15,23 +15,6 @@ const Listing = ({tryGetListing}) => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
 
-    const parseTags = () => {
-        let tagsList = []
-        if (listing.info.hasPets) {
-            tagsList.push("Pet friendly")
-        }
-        if (listing.info.type) {
-            tagsList.push(capitalizeFirstLetter(listing.info.type))
-        }
-        if (listing.info.light) {
-            tagsList.push(capitalizeFirstLetter(listing.info.light.split("Light")[0] + " light"))
-        }
-        if (listing.info.ownerWaters) {
-            tagsList.push("Watering provided")
-        }
-        return tagsList
-    }
-
     useEffect(() => {
         const listingId = window.location.pathname.split("/")[2]
         async function get() {
@@ -41,9 +24,25 @@ const Listing = ({tryGetListing}) => {
             await setDescription(l.description)
         }
         get();
-    }, []);
+    }, [tryGetListing]);
 
     useEffect(() => {
+        const parseTags = () => {
+            let tagsList = []
+            if (listing.info.hasPets) {
+                tagsList.push("Pet friendly")
+            }
+            if (listing.info.type) {
+                tagsList.push(capitalizeFirstLetter(listing.info.type))
+            }
+            if (listing.info.light) {
+                tagsList.push(capitalizeFirstLetter(listing.info.light.split("Light")[0] + " light"))
+            }
+            if (listing.info.ownerWaters) {
+                tagsList.push("Watering provided")
+            }
+            return tagsList
+        }
         if (listing) {
             setTags(parseTags())
         }

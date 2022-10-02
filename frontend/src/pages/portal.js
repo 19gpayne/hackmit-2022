@@ -15,14 +15,14 @@ const Portal = ({userId, tryGetUserListings}) => {
             await setListings(l)
         }
         get();
-    }, []);
+    }, [tryGetUserListings, userId]);
 
     return (
         <div>
             <Navbar></Navbar>
             <div style={{width: '40%', margin: '0 auto'}}>
                 {listings.map(listing => (
-                    <div>
+                    <div key={listing.id}>
                         <Listing listing={listing} viewListing={() => history('/my-yard/' + listing.id)} fromUser={true}/>
                         <br />
                     </div>

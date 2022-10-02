@@ -9,7 +9,7 @@ import { FilterOutlined } from '@ant-design/icons';
 import { Header24, Subheader20, Text14 } from '../components/fonts';
 import { useNavigate } from 'react-router-dom';
 import Geocode from "react-geocode";
-import { Country, State, City }  from 'country-state-city';
+import { City }  from 'country-state-city';
 import {setSearchParameters} from '../store/reducer';
 
 const SearchPage = ({searchData, tryGetRelevantListings}) => {
@@ -24,10 +24,9 @@ const SearchPage = ({searchData, tryGetRelevantListings}) => {
         async function get() {
             const l = await tryGetRelevantListings(coords.lat, coords.lng, 25)
             setListings(l)
-            console.log(l)
         }
         get();
-    }, [coords]);
+    }, [coords, tryGetRelevantListings]);
 
     useEffect(() => {
         async function get() {
@@ -57,6 +56,8 @@ const SearchPage = ({searchData, tryGetRelevantListings}) => {
                         case "administrative_area_level_1":
                           state = response.results[0].address_components[i].long_name;
                           break;
+                        default:
+                            break;
                       }
                     }
                   }
@@ -68,7 +69,7 @@ const SearchPage = ({searchData, tryGetRelevantListings}) => {
               );
         }
         get();
-    }, []);
+    }, [searchData]);
 
     const updateSearch = async () => {
         const loc = searchLocation !== "" ? searchLocation : "New York City, New York"
@@ -93,8 +94,8 @@ const SearchPage = ({searchData, tryGetRelevantListings}) => {
                         <div>
                             {City.getCitiesOfCountry('US').filter((city) => (
                                 city.stateCode.toLowerCase().includes(searchLocation.toLowerCase()) || 
-                                city.name.toLowerCase().includes(searchLocation.split(", ")[0].toLowerCase()) && 
-                                (searchLocation.includes(", ") ? city.stateCode.toLowerCase().includes(searchLocation.split(", ")[1].toLowerCase()) : true)
+                                (city.name.toLowerCase().includes(searchLocation.split(", ")[0].toLowerCase()) && 
+                                (searchLocation.includes(", ") ? city.stateCode.toLowerCase().includes(searchLocation.split(", ")[1].toLowerCase()) : true))
                             )
                             ).slice(0, 2).map((city => (
                                 <Text14 style={{

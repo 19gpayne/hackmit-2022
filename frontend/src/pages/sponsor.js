@@ -4,7 +4,7 @@ import {Button} from '../components/inputs';
 import Navbar from '../components/navbar';
 import { Header24, Title36, Subheader20 } from '../components/fonts';
 
-const SponsorPage = ({}) => {
+const SponsorPage = () => {
     return (
         <div>
             <Navbar></Navbar>

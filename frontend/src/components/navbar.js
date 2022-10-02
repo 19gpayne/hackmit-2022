@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {colors} from '../utils/colors';
@@ -31,7 +31,7 @@ const Navbar = ({authenticated}) => {
                         :
                         <>
                             <p onClick={() => history("/sponsor")} style={{cursor: 'pointer'}}>Sponsor</p>
-                            <p style={{cursor: 'pointer'}}>Share your yard</p>
+                            {/* <p style={{cursor: 'pointer'}}>Share your yard</p> */}
                             <p onClick={() => history("/signup")} style={{cursor: 'pointer'}}>Signup</p>
                             <p onClick={() => history("/login")} style={{cursor: 'pointer'}}>Login</p>
                         </>

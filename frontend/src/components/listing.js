@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { colors } from '../utils/colors';
 import { Header24, Header32, Subheader20 } from './fonts';
-import {Button, Button2} from './inputs';
 
 const Listing = ({listing, viewListing, fromUser}) => {
     return (
