@@ -121,8 +121,8 @@ export const SmallButton = ({title, onClick}) => (
     </StyledButtonSmall>
 );
 
-export const SmallButton2 = ({title, onClick}) => (
-    <StyledButtonSmall2 onClick={onClick}>
+export const SmallButton2 = ({title, onClick, color}) => (
+    <StyledButtonSmall2 onClick={onClick} style={{color: color, border: '2px solid' + color}}>
         {title}
     </StyledButtonSmall2>
 );

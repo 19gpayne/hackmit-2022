@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {colors} from '../utils/colors';
@@ -23,11 +23,10 @@ const Navbar = ({authenticated}) => {
                     marginBottom: '1rem',
                     color: colors.tertiary
                 }}>
-                    {authenticated ?
+                    {authenticated?.get("id") ?
                         <>
                             <p onClick={() => history("/my-yard")} style={{cursor: 'pointer'}}>My Yard</p>
-                            {/* <p style={{cursor: 'pointer'}}>Forums</p> */}
-                            <p style={{cursor: 'pointer'}}>Settings</p>
+                            <p onClick={() => history("/settings")} style={{cursor: 'pointer'}}>Settings</p>
                         </>
                         :
                         <>

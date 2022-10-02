@@ -9,6 +9,7 @@ import ListingPage from './pages/listing';
 import SponsorPage from './pages/sponsor';
 import PortalPage from './pages/portal';
 import EditListing from './pages/editlisting';
+import Profile from './pages/profile';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/search" element={<SearchPage />} />
             <Route path="/listing/:id" element={<ListingPage />} />
             <Route path="/my-yard" element={<><AuthRoute element={PortalPage} /></>} />
+            <Route path="/settings" element={<><AuthRoute element={Profile} /></>} />
             <Route path="/my-yard/:id" element={<><AuthRoute element={EditListing} /></>} />
             <Route path="/sponsor" element={<SponsorPage />} />
             <Route path="/login" element={<Login />} />

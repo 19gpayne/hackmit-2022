@@ -24,11 +24,11 @@ const Homepage = ({setSearchParameters}) => {
         const loc = location !== "" ? location : "New York City, New York"
         Geocode.fromAddress(loc).then(
             (response) => {
-            const { lat, lng } = response.results[0].geometry.location;
-            setSearchParameters({coordinates: {latitude: lat, longitude: lng}, radius: radius})
+                const { lat, lng } = response.results[0].geometry.location;
+                setSearchParameters({coordinates: {latitude: lat, longitude: lng}, radius: radius})
             },
             (error) => {
-            console.error(error);
+                console.error(error);
             }
         );
     }, [location, radius]);

@@ -15,7 +15,7 @@ export const devListingData = [
     {
         "id": 1,
         "title": "Shared sunny garden",
-        "images": [gardenImage],
+        "image": gardenImage,
         "info": {
             "hasPets": true,
             "light": "lowLight",
@@ -36,7 +36,7 @@ export const devListingData = [
     {
         "id": 2,
         "title": "Private backyard garden",
-        "images": [gardenImage3],
+        "image": gardenImage3,
         "description": "Spacious garden plot with built in trellis",
         "location": {
             city: "Boston",
@@ -52,7 +52,7 @@ export const devListingData = [
     {
         "id": 3,
         "title": "Raised garden",
-        "images": [gardenImage2],
+        "image": gardenImage2,
         "description": "Small raised bed garden",
         "location": {
             city: "Boston",
@@ -68,7 +68,7 @@ export const devListingData = [
     {
         "id": 4,
         "title": "Raised garden",
-        "images": [gardenImage],
+        "image": gardenImage,
         "description": "Sunlit shared yard with installed planters",
         "location": {
             city: "Boston",
@@ -84,7 +84,7 @@ export const devListingData = [
     {
         "id": 5,
         "title": "Raised garden",
-        "images": [gardenImage3],
+        "image": gardenImage3,
         "description": "Sunlit shared yard with installed planters",
         "location": {
             city: "Boston",
@@ -100,7 +100,7 @@ export const devListingData = [
     {
         "id": 6,
         "title": "Raised garden",
-        "images": [gardenImage2],
+        "image": gardenImage2,
         "description": "Sunlit shared yard with installed planters",
         "location": {
             city: "Boston",
@@ -116,7 +116,7 @@ export const devListingData = [
     {
         "id": 7,
         "title": "Raised garden",
-        "images": [gardenImage3],
+        "image": gardenImage3,
         "description": "Sunlit shared yard with installed planters",
         "location": {
             city: "Boston",
@@ -132,7 +132,7 @@ export const devListingData = [
     {
         "id": 8,
         "title": "Raised garden",
-        "images": [gardenImage],
+        "image": gardenImage,
         "description": "Sunlit shared yard with installed planters",
         "location": {
             city: "Boston",
@@ -148,7 +148,7 @@ export const devListingData = [
     {
         "id": 9,
         "title": "Entire backyard",
-        "images": [gardenImage2],
+        "image": gardenImage2,
         "description": "Sunlit shared yard with installed planters",
         "location": {
             city: "Boston",

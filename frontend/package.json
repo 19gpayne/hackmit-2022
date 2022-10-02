@@ -13,6 +13,7 @@
     "country-state-city": "^3.1.2",
     "immutable": "^4.1.0",
     "react": "^18.2.0",
+    "react-contenteditable": "^3.3.6",
     "react-dom": "^18.2.0",
     "react-geocode": "^0.2.3",
     "react-google-login": "^5.2.2",
