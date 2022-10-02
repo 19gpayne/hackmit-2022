@@ -3,14 +3,13 @@ package com.gardenshare.backend.controller;
 
 import com.gardenshare.backend.dto.User;
 import com.gardenshare.backend.dto.UserRepository;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-import java.util.Set;
 
+@CrossOrigin
 @RestController
 public class UserController {
     private final UserRepository repository;
